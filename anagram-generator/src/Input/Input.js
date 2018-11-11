@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import "./Input.css";
-
+// creates input window and functions, passes to generator
 class Input extends Component {
   render() {
     return (
@@ -10,3 +10,5 @@ class Input extends Component {
     );
   }
 }
+
+export default Input;
