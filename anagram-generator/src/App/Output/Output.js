@@ -1,14 +1,12 @@
 import React, { Component } from "react";
-import Generator from "../Generator/Generator";
-
 // Creates window and displays generator output
 
 class Output extends Component {
-  rener() {
+  render() {
     return (
-      <div classname="outputMain">
-        <h5 classname="outputText">Text</h5>
-        <Generator />
+      <div className="outputMain">
+        <h5 className="outputText">Text</h5>
+        <ul />
       </div>
     );
   }
