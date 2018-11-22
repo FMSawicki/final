@@ -10,21 +10,25 @@ class App extends Component {
     this.state = { inputText: "", apiResponse: [] };
     this.handleInput = this.handleInput.bind(this);
   }
-  // componentDidMount() {
-  // }
   handleInput = () => {
+    var result = [];
+    var index = "";
     var cors_api_url = "https://cors-anywhere.herokuapp.com/";
     var anagramica_api_url = `http://www.anagramica.com/best/:${
       this.state.inputText
     }`;
+    //assigns cors-anywhere url and api url to variables to fix cors error
     fetch(cors_api_url + anagramica_api_url)
-      .then(function(response) {
-        return response.json();
+      .then(response => response.json())
+      .then(myJson => (result = myJson.best))
+      //stores array recieved from api in variable
+      .then(result => {
+        index = result.indexOf(`${this.state.inputText}`);
+        result.splice(index, 1);
+        //since the recieved array includes the word sent in the fetch request, this finds the index of that word in the array and removes it. I used splice to avoid leaving a hole in the array.
+        this.setState({ apiResponse: result });
       })
-      .then(function(myJson) {
-        console.log(JSON.stringify(myJson));
-        // console.log(myJson);
-      });
+      .catch(error => console.error(error));
   };
   onChange = e => {
     this.setState({ inputText: e.target.value });
